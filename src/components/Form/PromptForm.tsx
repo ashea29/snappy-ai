@@ -1,19 +1,31 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
+import validator from 'validator'
 import styles from './PromptForm.module.scss'
 
 const PromptForm: React.FC = () => {
-  const formContainerRef = useRef<HTMLDivElement>(null)
+  const PromptSchema = Yup.object().shape({
+    promptText: Yup.string()
+      .required('Required')
+  })
 
-  const applyBackgroundUrl = () => {
-    formContainerRef.current!.style.backgroundImage = 'url(/assets/robot.gif)';
-  }
+  const formik = useFormik({
+    initialValues: {
+      promptText: ''
+    },
+    validationSchema: PromptSchema,
+    onSubmit: (values) => {
+      const { promptText } = values
+      const userInput = validator.escape(promptText).trim()
+      setSubmitting(true)
+    },
+  })
 
-  useEffect(() => {
-    applyBackgroundUrl()
-  }, [])
+  const { isSubmitting, setSubmitting, errors, touched } = formik
 
   return (
-    <div ref={formContainerRef} className={styles["form-container"]}>
+    <div className={styles["form-container"]}>
       
     </div>
   )
