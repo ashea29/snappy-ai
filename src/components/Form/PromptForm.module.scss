@@ -1,14 +1,75 @@
+@use '../../index.scss' as *;
+
 .form-container {
-  background-image: url('/assets/robot.gif');
   background-size: contain;
   background-position: right top;
   background-repeat: no-repeat;
   width: 100%;
-  min-height: 75vh;
+  min-height: 60vh;
   overflow: hidden;
-  // border: 2px solid #fff;
   padding: 2rem;
+  margin-top: -2rem;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
+
+  @media screen and (min-width: 600px) {
+    & {
+      background-position: right top;
+      min-height: 75vh;
+    }
+  }
+}
+
+.form {
+  flex-basis: 100%;
+    
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 12rem;
+  text-align: center;
+
+  @media screen and (min-width: 600px) {
+    & {
+      margin-top: 0;
+      text-align: left;
+      flex-basis: 50%;
+    }
+  }
+}
+
+.label {
+  color: $main-text-color;
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.prompt-input {
+  resize: none;
+  width: 100%;
+  font-family: $main-font;
+  padding: 0.75rem;
+  border-radius: 5px;
+  outline: none;
+}
+
+.submit-button {
+  width: 7rem;
+  height: 2.5rem;
+  padding: 0.5rem;
+  text-align: center;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid #fff;
+  background-color: $main-text-color;
+  color: #fff;
+
+  &:hover {
+    filter: brightness(90%);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 }

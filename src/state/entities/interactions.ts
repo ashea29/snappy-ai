@@ -37,6 +37,7 @@ export const generateResponse = createAsyncThunk<void, apiThunkProps, ThunkAPI>(
   'interactions/generateResponse',
   async (props, thunkApi) => {
     const dispatch = thunkApi.dispatch
+    const state = thunkApi.getState()
     const prompt = props.userPrompt
     let response
     setTimeout(() => {
