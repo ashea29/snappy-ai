@@ -4,7 +4,7 @@ import styles from './Robot.module.scss'
 
 const Robot = () => {
   return (
-    <div>Robot</div>
+    <div className={styles["robot-container"]}></div>
   )
 }
 
