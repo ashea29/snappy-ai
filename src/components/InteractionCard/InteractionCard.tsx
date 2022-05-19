@@ -12,13 +12,6 @@ const InteractionCard = (props: InteractionProps) => {
   const { userPrompt, response } = props
   const cardRef = useRef<HTMLDivElement>(null)
 
-  const handleClick = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    })
-  }
-
   useEffect(() => {
     cardRef.current?.scrollIntoView({
       behavior: 'smooth',
@@ -45,14 +38,6 @@ const InteractionCard = (props: InteractionProps) => {
           <div className={styles["response-text"]}>
             {response}
           </div>
-        </div>
-        <div className={styles["button-container"]}>
-          <button 
-            className={styles["to-top-button"]}
-            onClick={handleClick}
-          >
-            Back to Top
-          </button>
         </div>
       </div>
     </div>

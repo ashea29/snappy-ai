@@ -12,9 +12,6 @@ import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
 const PromptForm = () => {
   const dispatch = useAppDispatch()
   const textareaRef = useRef<HTMLTextAreaElement>(null)
-  const submitButtonRef = useRef<HTMLButtonElement>(null)
-
-  const interactionsLoading = useAppSelector(selectInteractionsLoading)
 
   const PromptSchema = Yup.object().shape({
     promptText: Yup.string()
@@ -29,24 +26,22 @@ const PromptForm = () => {
       validationSchema={PromptSchema}
       onSubmit={async (values, { setSubmitting, resetForm }) => {
         setSubmitting(true)
-        // submitButtonRef.current!.disabled = true
         const sanitizedPrompt = validator.escape(values.promptText).trim()
-        console.log(values.promptText)
-        const response = await dispatch(generateResponse({
+        await dispatch(generateResponse({
           userPrompt: sanitizedPrompt
         }))
         
-        // setSubmitting(false)
-        // submitButtonRef.current!.disabled = false
-        console.log(response)
+        setSubmitting(false)
         textareaRef.current!.value = ''
         resetForm()
       }}
     >
-      {({ values, isSubmitting, errors, touched, handleChange }) => (
+      {({ isSubmitting, errors, touched, handleChange }) => (
         <div className={styles["form-container"]}>
           <Form className={styles.form}>
-            <label className={styles.label} htmlFor="promptText">Ask Snappy a Question...</label>
+            <label className={styles.label} htmlFor="promptText">
+              Give Snappy a prompt...
+            </label>
             <textarea
               ref={textareaRef}
               className={styles["prompt-input"]} 
@@ -62,10 +57,10 @@ const PromptForm = () => {
               <div className={styles.error}>{errors.promptText}</div>
             ) : null}
             <button
-              ref={submitButtonRef}
+              // ref={submitButtonRef}
               className={styles["submit-button"]} 
               type="submit"
-              // disabled={isSubmitting}
+              disabled={isSubmitting}
             >
               Submit
             </button> 

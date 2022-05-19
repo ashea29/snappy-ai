@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState, AppDispatch } from '../store'
 import { v4 as uuidv4 } from 'uuid'
+import axios, { AxiosResponse } from 'axios'
 
 
 interface Interaction {
@@ -37,22 +38,29 @@ export const generateResponse = createAsyncThunk<void, apiThunkProps, ThunkAPI>(
   'interactions/generateResponse',
   async (props, thunkApi) => {
     const dispatch = thunkApi.dispatch
-    const state = thunkApi.getState()
-    const prompt = props.userPrompt
-    let response: any
+    // const state = thunkApi.getState()
+
+    const apiRequest = {
+      prompt: props.userPrompt,
+      temperature: 0.9,
+      max_tokens: 50
+    }
     
-    setTimeout(() => {
+    const openaiURL = "https://api.openai.com/v1/engines/text-curie-001/completions"
+    const response: any = await axios.post(openaiURL, apiRequest, {
+      headers: {
+        "Authorization": `Bearer ${process.env.REACT_APP_OPENAI_KEY}`
+      }
+    })
 
-      response = `I'm afraid I can't do that, Dave.`
+    const interaction = response.data.choices[0].text
+    console.log(JSON.stringify(interaction))
 
-      dispatch(logInteraction({
-        id: uuidv4(),
-        prompt,
-        response
-      }))
-    }, 3000);
-
-    return response;
+    dispatch(logInteraction({
+      id: uuidv4(),
+      prompt: props.userPrompt,
+      response: interaction
+    }))
   }
 );
 

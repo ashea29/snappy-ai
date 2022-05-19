@@ -1,3 +1,5 @@
+@use '../../index.scss' as *;
+
 .interaction-list {
   display: flex;
   flex-direction: column;
@@ -11,4 +13,27 @@
       flex-basis: 50%;
     }
   }
+}
+
+.hidden {
+  display: none;
+}
+
+
+.button-container {
+  width: 100%;
+  // padding: 0 2rem;
+  margin-top: 1rem;
+}
+
+.to-top-button {
+  width: 7rem;
+  height: 2.5rem;
+  text-align: center;
+  outline: none;
+  border-radius: 5px;
+  padding: 0.5rem;
+  border: 1px solid #fff;
+  background-color: $main-text-color;
+  color: #fff;
 }

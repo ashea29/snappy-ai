@@ -2,15 +2,16 @@
 
 .form-container {
   width: 80%;
-  min-height: 75vh;
+  // min-height: 75vh;
   overflow: hidden;
-  padding: 2rem;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 
   @media screen and (min-width: 600px) {
     min-height: 75vh;
+    align-items: center;
+    padding: 2rem;
   }
 }
 
@@ -67,8 +68,8 @@
   }
   
   &:disabled {
-    background-color: darkslategray !important;
-    color: lightgray !important;
+    filter: grayscale(100%);
+    opacity: 0.5;
   }
 }
 
