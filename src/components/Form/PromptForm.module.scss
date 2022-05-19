@@ -1,40 +1,29 @@
 @use '../../index.scss' as *;
 
 .form-container {
-  background-size: contain;
-  background-position: right top;
-  background-repeat: no-repeat;
-  width: 100%;
-  min-height: 60vh;
+  width: 80%;
+  min-height: 75vh;
   overflow: hidden;
   padding: 2rem;
-  margin-top: -2rem;
   display: flex;
   align-items: center;
   justify-content: center;
 
   @media screen and (min-width: 600px) {
-    & {
-      background-position: right top;
-      min-height: 75vh;
-    }
+    min-height: 75vh;
   }
 }
 
 .form {
-  flex-basis: 100%;
-    
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  margin-top: 12rem;
   text-align: center;
+  width: 100%;
 
   @media screen and (min-width: 600px) {
     & {
-      margin-top: 0;
       text-align: left;
-      flex-basis: 50%;
     }
   }
 }
@@ -52,6 +41,10 @@
   padding: 0.75rem;
   border-radius: 5px;
   outline: none;
+}
+
+.error {
+  color: red;
 }
 
 .submit-button {
@@ -72,4 +65,10 @@
   &:active {
     transform: scale(0.95);
   }
+  
+  &:disabled {
+    background-color: darkslategray !important;
+    color: lightgray !important;
+  }
 }
+
