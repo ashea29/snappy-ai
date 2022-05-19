@@ -1,0 +1,12 @@
+.robot-container {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 100%;
+  min-height: 40vh;
+  overflow: hidden;
+
+  @media screen and (min-width: 600px) {
+    min-height: 75vh;
+  }
+}

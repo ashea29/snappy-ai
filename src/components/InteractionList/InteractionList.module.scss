@@ -1,0 +1,14 @@
+.interaction-list {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  gap: 1.5rem;
+  // flex-basis: 50%;
+
+  @media screen and (min-width) {
+    & {
+      flex-basis: 50%;
+    }
+  }
+}

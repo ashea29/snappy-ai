@@ -11,7 +11,7 @@ interface Interaction {
 
 interface InteractionsState {
   values: Interaction[];
-  status: 'idle' | 'loading' | 'failed';
+  loading: boolean;
 }
 
 interface apiThunkProps {
@@ -29,7 +29,7 @@ interface ThunkAPI {
 
 const initialState: InteractionsState = {
   values: [],
-  status: 'idle',
+  loading: false,
 };
 
 
@@ -39,8 +39,10 @@ export const generateResponse = createAsyncThunk<void, apiThunkProps, ThunkAPI>(
     const dispatch = thunkApi.dispatch
     const state = thunkApi.getState()
     const prompt = props.userPrompt
-    let response
+    let response: any
+    
     setTimeout(() => {
+
       response = `I'm afraid I can't do that, Dave.`
 
       dispatch(logInteraction({
@@ -48,7 +50,6 @@ export const generateResponse = createAsyncThunk<void, apiThunkProps, ThunkAPI>(
         prompt,
         response
       }))
-      
     }, 3000);
 
     return response;
@@ -66,13 +67,13 @@ export const interactions = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(generateResponse.pending, (state) => {
-        state.status = 'loading';
+        state.loading = true;
       })
       .addCase(generateResponse.fulfilled, (state) => {
-        state.status = 'idle';
+        state.loading = false;
       })
       .addCase(generateResponse.rejected, (state) => {
-        state.status = 'failed';
+        state.loading = false;
       });
   },
 });
@@ -80,6 +81,7 @@ export const interactions = createSlice({
 export const { logInteraction } = interactions.actions;
 
 export const selectInteractions = (state: RootState) => state.interactions.values;
+export const selectInteractionsLoading = (state: RootState) => state.interactions.loading;
 
 
 
