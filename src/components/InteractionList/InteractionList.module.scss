@@ -6,7 +6,6 @@
   margin-bottom: 3rem;
   padding: 2rem;
   gap: 1.5rem;
-  // flex-basis: 50%;
 
   @media screen and (min-width) {
     & {
@@ -22,7 +21,6 @@
 
 .button-container {
   width: 100%;
-  // padding: 0 2rem;
   margin-top: 1rem;
 }
 
@@ -34,6 +32,6 @@
   border-radius: 5px;
   padding: 0.5rem;
   border: 1px solid #fff;
-  background-color: $main-text-color;
+  background-color: $bg-dark;
   color: #fff;
 }

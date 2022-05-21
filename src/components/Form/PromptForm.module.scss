@@ -2,7 +2,6 @@
 
 .form-container {
   width: 80%;
-  // min-height: 75vh;
   overflow: hidden;
   display: flex;
   align-items: flex-start;
@@ -48,6 +47,13 @@
   color: red;
 }
 
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.5rem;
+}
+
 .submit-button {
   width: 7rem;
   height: 2.5rem;
@@ -56,7 +62,7 @@
   border-radius: 5px;
   outline: none;
   border: 1px solid #fff;
-  background-color: $main-text-color;
+  background-color: $bg-dark;
   color: #fff;
 
   &:hover {

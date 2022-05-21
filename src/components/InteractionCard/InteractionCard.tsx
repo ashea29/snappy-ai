@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react'
-import { Card, Divider } from 'semantic-ui-react'
 import styles from './InteractionCard.module.scss'
 
 
@@ -30,7 +29,6 @@ const InteractionCard = (props: InteractionProps) => {
             {userPrompt}
           </div>
         </div>
-        {/* <hr /> */}
         <div className={styles["response-container"]}>
           <div className={styles["response-name"]}>
             <h4>Snappy:</h4>

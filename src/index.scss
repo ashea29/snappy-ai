@@ -4,29 +4,16 @@
 
 
 $main-font: "Poppins", sans-serif;
+$header-font: 'Play', sans-serif;
 $main-color: #45badd;
 $main-text-color: #1c306d;
+$bg-dark: #1c306d;
 
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-
-// Set text color based on background
-@function set-text-color($color) {
-  @if (lightness($color) > 70) {
-    @return #333;
-  } @else {
-    @return #fff;
-  }
-}
-// Set background and text color
-@mixin set-background-color($color) {
-  background-color: $color;
-  color: set-text-color($color)
-}
-
 
 body {
   font-family: $main-font;

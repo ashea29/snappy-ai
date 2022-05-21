@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState, AppDispatch } from '../store'
 import { v4 as uuidv4 } from 'uuid'
-import axios, { AxiosResponse } from 'axios'
+import axios from 'axios'
 
 
 interface Interaction {
@@ -38,7 +38,6 @@ export const generateResponse = createAsyncThunk<void, apiThunkProps, ThunkAPI>(
   'interactions/generateResponse',
   async (props, thunkApi) => {
     const dispatch = thunkApi.dispatch
-    // const state = thunkApi.getState()
 
     const apiRequest = {
       prompt: props.userPrompt,
@@ -54,7 +53,6 @@ export const generateResponse = createAsyncThunk<void, apiThunkProps, ThunkAPI>(
     })
 
     const interaction = response.data.choices[0].text
-    console.log(JSON.stringify(interaction))
 
     dispatch(logInteraction({
       id: uuidv4(),
