@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from 'react'
-import { Form, Formik, useFormik } from 'formik'
+import React, { useRef } from 'react'
+import { Form, Formik } from 'formik'
 import * as Yup from 'yup'
 import validator from 'validator'
-import { useAppDispatch, useAppSelector } from '../../state/hooks'
-import { generateResponse, selectInteractionsLoading } from '../../state/entities/interactions'
+import { useAppDispatch } from '../../state/hooks'
+import { generateResponse } from '../../state/entities/interactions'
 import styles from './PromptForm.module.scss'
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
 
@@ -52,22 +52,26 @@ const PromptForm = () => {
               wrap="hard"
               placeholder="Write prompt here"
               onChange={handleChange}
+              disabled={isSubmitting}
             ></textarea>
             {errors.promptText && touched.promptText ? (
               <div className={styles.error}>{errors.promptText}</div>
             ) : null}
-            <button
-              // ref={submitButtonRef}
-              className={styles["submit-button"]} 
-              type="submit"
-              disabled={isSubmitting}
-            >
-              Submit
-            </button> 
+            <div className={styles["button-container"]}>
+              <button
+                className={styles["submit-button"]} 
+                type="submit"
+                disabled={isSubmitting}
+              >
+                Submit
+              </button>
+              {isSubmitting && 
+                <LoadingSpinner />
+              }
+            </div>
           </Form>
         </div>
       )} 
-
     </Formik>
   )
 }
