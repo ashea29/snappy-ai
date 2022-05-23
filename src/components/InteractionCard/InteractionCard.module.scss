@@ -32,6 +32,13 @@
 
 .prompt-name, .response-name {
   flex-basis: 33%;
+  text-align: center;
+
+  @media screen and (min-width: 600px) {
+    & {
+      text-align: left;
+    }
+  }
 }
 
 .prompt-text, .response-text {
@@ -40,4 +47,11 @@
   font-size: 0.85rem;
   display: flex;
   align-items: center;
+  justify-content: center;
+
+  @media screen and (min-width: 600px) {
+    & {
+      justify-content: flex-start;
+    }
+  }
 }
