@@ -38,26 +38,16 @@ export const generateResponse = createAsyncThunk<void, apiThunkProps, ThunkAPI>(
   'interactions/generateResponse',
   async (props, thunkApi) => {
     const dispatch = thunkApi.dispatch
-
-    const apiRequest = {
-      prompt: props.userPrompt,
-      temperature: 0.9,
-      max_tokens: 50
-    }
     
-    const openaiURL = "https://api.openai.com/v1/engines/text-curie-001/completions"
-    const response: any = await axios.post(openaiURL, apiRequest, {
-      headers: {
-        "Authorization": `Bearer ${process.env.REACT_APP_OPENAI_KEY}`
-      }
-    })
+    const openaiURL = "https://us-central1-snappy-ai-api.cloudfunctions.net/app/api/prompt"
+    const response: any = await axios.post(openaiURL)
 
-    const interaction = response.data.choices[0].text
+    const aiResponse = response.data.aiResponse
 
     dispatch(logInteraction({
       id: uuidv4(),
       prompt: props.userPrompt,
-      response: interaction
+      response: aiResponse
     }))
   }
 );
