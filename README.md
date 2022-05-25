@@ -1,6 +1,6 @@
 # Snappy AI
 
-A simple app to interact with the "text-curie-001" OpenAI completion model. Built for Shopify's Front End Developer Intern Challenge.
+A simple app to interact with the "text-curie-001" GPT-3 AI engine from OpenAI. Built for Shopify's Front End Developer Intern Challenge.
 
 ## Usage
 
