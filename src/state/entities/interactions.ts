@@ -46,7 +46,7 @@ export const generateResponse = createAsyncThunk<void, apiThunkProps, ThunkAPI>(
     const openaiURL = "https://us-central1-snappy-ai-api.cloudfunctions.net/app/api/prompt"
     const response: any = await axios.post(openaiURL, requestData)
     
-    const aiResponse = response.data.data.aiResponse
+    const aiResponse = response.data.aiResponse
 
     dispatch(logInteraction({
       id: uuidv4(),
